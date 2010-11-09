@@ -1,9 +1,14 @@
 var Calculator = function() {
-  this.accumulator = 0;
+  this._stack = [0];
 };
 
 Calculator.prototype = {
-  setAccumulator: function(value) {
-    this.accumulator = value;
+  accumulator: function(value) {
+    if (typeof value === "undefined")
+      return this._stack[0];
+    else {
+      this._stack[0] = value;
+      return this;
+    }
   }
 };
