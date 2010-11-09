@@ -76,4 +76,21 @@ describe("Calculator", function() {
     });
 
   });
+
+  describe("with one operand", function() {
+    beforeEach(function() {
+      calculator = new Calculator;
+      calculator.accumulator(3);
+    });
+
+    it("should change sign of number", function() {
+      calculator.negate();
+      expect(calculator.accumulator()).toEqual(-3);
+    });
+
+    it("should change twice sign of number", function() {
+      calculator.negate().negate();
+      expect(calculator.accumulator()).toEqual(3);
+    });
+  });
 });

@@ -84,5 +84,10 @@ Calculator.prototype = {
         lhs = this.stack.pop();
     this.stack.push(lhs/rhs);
     return this;
+  },
+
+  negate: function() {
+    this.stack.replaceTop(-this.stack.peek());
+    return this;
   }
 };
