@@ -34,28 +34,27 @@ Stack.prototype = {
 };
 
 var Calculator = function() {
-  this._stack = [0];
+  this.stack = new Stack;
 };
 
 Calculator.prototype = {
   accumulator: function(value) {
-    if (typeof value === "undefined")
-      return this._stack[0];
-    else {
-      this._stack[0] = value;
+    if (typeof value === "undefined") {
+      return this.stack.peek();
+    } else {
+      this.stack.replaceTop(value);
       return this;
     }
   },
 
   enter: function() {
-    this._stack.unshift(this._stack[0]);
+    this.stack.push(this.stack.peek());
     return this;
   },
 
   drop: function() {
-    this._stack.shift();
-    if (this._stack.length == 0)
-      this._stack[0] = 0;
+    this.stack.pop();
+    this.stack.initialize();
     return this;
   }
 };
