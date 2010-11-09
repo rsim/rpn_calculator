@@ -95,48 +95,36 @@ describe("Calculator", function() {
   });
 
   describe("memory", function() {
-    var memory,
-        callback = function(data) {console.log(data); memory = typeof data === "string" ? parseInt(data,10) : data;};
-
     beforeEach(function() {
       calculator = new Calculator;
-      $.get("http://localhost:8080/memory/clear");
+      calculator.memoryClear();
     });
 
     it("should initially be empty", function() {
-      // expect(calculator.isMemoryEmpty).toBeTruthy();
-      $.get("http://localhost:8080/memory", callback, "jsonp");
-      waits(100);
-      runs(function() {
-        expect(memory).toBeNull();
-      });
+      expect(calculator.isMemoryEmpty).toBeTruthy();
     });
 
     it("should add accumulator", function() {
-      // calculator
-      //   .accumulator(42)
-      //   .memoryAdd()
-      //   .accumulator(0)
-      //   .memoryRecall();
-      // expect(calculator.accumulator()).toEqual(42);
-      $.get("http://localhost:8080/memory/add/42", callback, "jsonp");
+      calculator
+        .accumulator(42)
+        .memoryAdd()
+        .accumulator(0)
+        .memoryRecall();
       waits(100);
       runs(function() {
-        expect(memory).toEqual(42);
+        expect(calculator.accumulator()).toEqual(42);
       });
     });
 
     it("should subtract accumulator", function() {
-      // calculator
-      //   .accumulator(42)
-      //   .memorySubtract()
-      //   .accumulator(0)
-      //   .memoryRecall();
-      // expect(calculator.accumulator()).toEqual(-42);
-      $.get("http://localhost:8080/memory/subtract/42", callback, "jsonp");
+      calculator
+        .accumulator(42)
+        .memorySubtract()
+        .accumulator(0)
+        .memoryRecall();
       waits(100);
       runs(function() {
-        expect(memory).toEqual(-42);
+        expect(calculator.accumulator()).toEqual(-42);
       });
     });
 

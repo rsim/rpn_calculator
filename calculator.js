@@ -33,8 +33,45 @@ Stack.prototype = {
   }
 };
 
+var ServerMemory = function(url) {
+  this.url = url;
+  this._lastValue = undefined;
+};
+
+ServerMemory.prototype = {
+  clear: function() {
+    $.get(this.url + "/memory/clear", this._setLastValue, "jsonp");
+    this._lastValue = null;
+  },
+
+  add: function(value) {
+    $.get(this.url + "/memory/add/"+value, this._setLastValue, "jsonp");
+  },
+
+  subtract: function(value) {
+    $.get(this.url + "/memory/subtract/"+value, this._setLastValue, "jsonp");
+  },
+
+  recall: function(callback) {
+    var self = this;
+    $.get(this.url + "/memory", function(data) {
+      self._setLastValue(data);
+      callback(data);
+    }, "jsonp");
+  },
+
+  _setLastValue: function(data) {
+    this._lastValue = data;
+  },
+
+  isEmpty: function() {
+    return this._lastValue === null;
+  }
+};
+
 var Calculator = function() {
   this.stack = new Stack;
+  this.memory = new ServerMemory("http://localhost:8080");
 };
 
 Calculator.prototype = {
@@ -89,5 +126,32 @@ Calculator.prototype = {
   negate: function() {
     this.stack.replaceTop(-this.stack.peek());
     return this;
+  },
+
+  memoryClear: function() {
+    this.memory.clear();
+    return this;
+  },
+
+  memoryAdd: function() {
+    this.memory.add(this.stack.peek());
+    return this;
+  },
+
+  memorySubtract: function() {
+    this.memory.subtract(this.stack.peek());
+    return this;
+  },
+
+  memoryRecall: function() {
+    var self = this;
+    this.memory.recall(function(value) {
+      self.stack.replaceTop(value);
+    });
+    return this;
+  },
+
+  isMemoryEmpty: function() {
+    return this.memory.isEmpty();
   }
 };
