@@ -49,5 +49,31 @@ describe("Calculator", function() {
 
   });
 
+  describe("with two operands", function() {
+    beforeEach(function() {
+      calculator = new Calculator;
+      calculator.accumulator(3).enter().accumulator(4);
+    });
 
+    it("should add two numbers", function() {
+      calculator.add();
+      expect(calculator.accumulator()).toEqual(7);
+    });
+
+    it("should subtract two numbers", function() {
+      calculator.subtract();
+      expect(calculator.accumulator()).toEqual(-1);
+    });
+
+    it("should multiply two numbers", function() {
+      calculator.multiply();
+      expect(calculator.accumulator()).toEqual(12);
+    });
+
+    it("should divide two numbers", function() {
+      calculator.divide();
+      expect(calculator.accumulator()).toEqual(0.75);
+    });
+
+  });
 });

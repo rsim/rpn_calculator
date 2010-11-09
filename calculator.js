@@ -56,5 +56,33 @@ Calculator.prototype = {
     this.stack.pop();
     this.stack.initialize();
     return this;
+  },
+
+  add: function() {
+    var rhs = this.stack.pop(),
+        lhs = this.stack.pop();
+    this.stack.push(lhs+rhs);
+    return this;
+  },
+
+  subtract: function() {
+    var rhs = this.stack.pop(),
+        lhs = this.stack.pop();
+    this.stack.push(lhs-rhs);
+    return this;
+  },
+
+  multiply: function() {
+    var rhs = this.stack.pop(),
+        lhs = this.stack.pop();
+    this.stack.push(lhs*rhs);
+    return this;
+  },
+
+  divide: function() {
+    var rhs = this.stack.pop(),
+        lhs = this.stack.pop();
+    this.stack.push(lhs/rhs);
+    return this;
   }
 };
