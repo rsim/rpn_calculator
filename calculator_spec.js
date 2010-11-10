@@ -92,6 +92,26 @@ describe("Calculator", function() {
       calculator.negate().negate();
       expect(calculator.accumulator()).toEqual(3);
     });
+
+    it("should not add", function() {
+      calculator.add();
+      expect(calculator.accumulator()).toEqual(3);
+    });
+
+    it("should not subtract", function() {
+      calculator.subtract();
+      expect(calculator.accumulator()).toEqual(3);
+    });
+
+    it("should not multiply", function() {
+      calculator.multiply();
+      expect(calculator.accumulator()).toEqual(3);
+    });
+
+    it("should not divide", function() {
+      calculator.divide();
+      expect(calculator.accumulator()).toEqual(3);
+    });
   });
 
   describe("server memory", function() {

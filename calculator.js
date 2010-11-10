@@ -109,30 +109,37 @@ Calculator.prototype = {
   },
 
   add: function() {
-    var rhs = this.stack.pop(),
-        lhs = this.stack.pop();
-    this.stack.push(lhs+rhs);
-    return this;
+    return this._binaryOperation(function(lhs, rhs) {
+      return lhs+rhs;
+    });
   },
 
   subtract: function() {
-    var rhs = this.stack.pop(),
-        lhs = this.stack.pop();
-    this.stack.push(lhs-rhs);
-    return this;
+    return this._binaryOperation(function(lhs, rhs) {
+      return lhs-rhs;
+    });
   },
 
   multiply: function() {
-    var rhs = this.stack.pop(),
-        lhs = this.stack.pop();
-    this.stack.push(lhs*rhs);
-    return this;
+    return this._binaryOperation(function(lhs, rhs) {
+      return lhs*rhs;
+    });
   },
 
   divide: function() {
+    return this._binaryOperation(function(lhs, rhs) {
+      return lhs/rhs;
+    });
+  },
+
+  _binaryOperation: function(implementation) {
     var rhs = this.stack.pop(),
         lhs = this.stack.pop();
-    this.stack.push(lhs/rhs);
+    if (typeof lhs === "undefined") {
+      this.stack.push(rhs);
+    } else {
+      this.stack.push(implementation(lhs,rhs));
+    }
     return this;
   },
 
