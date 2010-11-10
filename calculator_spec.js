@@ -94,38 +94,45 @@ describe("Calculator", function() {
     });
   });
 
-  describe("memory", function() {
+  describe("server memory", function() {
+    var url = "http://localhost:8080",
+        ajaxCall = function(param) {return jQuery.ajax.mostRecentCall.args[0][param];};
+
     beforeEach(function() {
       calculator = new Calculator;
+      spyOn(jQuery, "ajax");
       calculator.memoryClear();
     });
 
     it("should initially be empty", function() {
+      expect(ajaxCall("url")).toEqual(url+"/memory/clear");
       expect(calculator.isMemoryEmpty).toBeTruthy();
     });
 
     it("should add accumulator", function() {
       calculator
         .accumulator(42)
-        .memoryAdd()
+        .memoryAdd();
+      expect(ajaxCall("url")).toEqual(url+"/memory/add/42");
+      calculator
         .accumulator(0)
         .memoryRecall();
-      waits(100);
-      runs(function() {
-        expect(calculator.accumulator()).toEqual(42);
-      });
+      expect(ajaxCall("url")).toEqual(url+"/memory");
+      ajaxCall("success")(42);
+      expect(calculator.accumulator()).toEqual(42);
     });
 
     it("should subtract accumulator", function() {
       calculator
         .accumulator(42)
-        .memorySubtract()
+        .memorySubtract();
+      expect(ajaxCall("url")).toEqual(url+"/memory/subtract/42");
+      calculator
         .accumulator(0)
         .memoryRecall();
-      waits(100);
-      runs(function() {
-        expect(calculator.accumulator()).toEqual(-42);
-      });
+      expect(ajaxCall("url")).toEqual(url+"/memory");
+      ajaxCall("success")(-42);
+      expect(calculator.accumulator()).toEqual(-42);
     });
 
   });
