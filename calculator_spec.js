@@ -137,4 +137,29 @@ describe("Calculator", function() {
 
   });
 
+  describe("stack operations", function() {
+    beforeEach(function() {
+      calculator = new Calculator;
+      calculator
+        .accumulator(1).enter()
+        .accumulator(2).enter()
+        .accumulator(3);
+    });
+
+    it("should swap top values", function() {
+      calculator.swap();
+      expect(calculator.stackValues()).toEqual([1,3,2]);
+    });
+
+    it("should roll down", function() {
+      calculator.rollDown();
+      expect(calculator.stackValues()).toEqual([3,1,2]);
+    });
+
+    it("should roll up", function() {
+      calculator.rollUp();
+      expect(calculator.stackValues()).toEqual([2,3,1]);
+    });
+
+  });
 });

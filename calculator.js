@@ -30,7 +30,20 @@ Stack.prototype = {
 
   values: function() {
     return _.clone(this._stack).reverse();
+  },
+
+  rollDown: function() {
+    var value = this._stack.shift();
+    this._stack.push(value);
+    return this;
+  },
+
+  rollUp: function() {
+    var value = this._stack.pop();
+    this._stack.unshift(value);
+    return this;
   }
+
 };
 
 var ServerMemory = function(url) {
@@ -153,5 +166,26 @@ Calculator.prototype = {
 
   isMemoryEmpty: function() {
     return this.memory.isEmpty();
+  },
+
+  stackValues: function() {
+    return this.stack.values();
+  },
+
+  swap: function() {
+    var rhs = this.stack.pop(),
+        lhs = this.stack.pop();
+    this.stack.push(rhs).push(lhs);
+    return this;
+  },
+
+  rollDown: function() {
+    this.stack.rollDown();
+    return this;
+  },
+
+  rollUp: function() {
+    this.stack.rollUp();
+    return this;
   }
 };
