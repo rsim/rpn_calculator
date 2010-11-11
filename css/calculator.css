@@ -1,0 +1,86 @@
+body {
+	font-family: arial;
+}
+#calculator {
+	margin: 20px;
+	padding: 10px;
+	width: 200px;
+	background-color: #a7a7a7;
+	border: 1px solid #888;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#display {
+	position: relative;
+	background-color: #f1faca;
+	border: 1px solid #888;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	height: 120px;
+}
+
+#stack {
+	margin: 10px 5px 5px 5px;
+	background-color: #f4f9d5;
+	border: 1px solid #bbb;
+	height: 85px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#stack ul {
+	margin: 0;
+	list-style: none;
+	padding: 0px;
+}
+
+#stack li {
+	margin: 0px;
+	padding: 2px 5px 2px 5px;
+	height: 16px;
+	text-align: right;
+	border-top: 1px solid #ccc;
+	font-size: 16px;
+}
+
+#display span {
+	font-size: 11px;
+	position: absolute;
+	padding-top: 2px;
+}
+#memory-indicator {
+	display: none;
+	left: 45px;
+}
+#rpn-indicator {
+	left: 70px;
+}
+#buttons {
+	padding-top:  10px;
+	margin-right: -4px;
+	height: 220px
+}
+
+#buttons button {
+	float: left;
+	width: 47px;
+	height: 28px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	background-color: #d6d6d6;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	font-size: 13px;
+}
+#buttons button.tall {
+	float: right;
+	height: 60px;
+	padding-top: 30px;
+}
+#buttons button.wide {
+	width: 98px;
+}
+button::-moz-focus-inner {
+	border: none;
+}
