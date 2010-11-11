@@ -8,6 +8,10 @@
 
   <script type="text/javascript" src="vendor/jquery.js"></script>
   <script type="text/javascript" src="vendor/underscore.js"></script>
+  <script type="text/javascript" src="vendor/backbone.js"></script>
+
+  <script type="text/javascript" src="calculator.js"></script>
+  <script type="text/javascript" src="calculator_view.js"></script>
 
 </head>
 <body>
@@ -37,6 +41,11 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    $(function() {
+      var calculatorView = new CalculatorView({el: $("#calculator")});
+    });
+  </script>
 
 </body>
 </html>
