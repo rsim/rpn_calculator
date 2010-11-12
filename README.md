@@ -15,6 +15,8 @@ User interface is made to simulate Mac OS X calculator RPN mode.
 
 Visit [calculator demo page](http://rsim.github.com/rpn_calculator/calculator.html) to see final result of calculator application.
 
+Visit [tests page](http://rsim.github.com/rpn_calculator/tests.html) to see execution result of all tests.
+
 ## Following steps of building application
 
 Clone repository locally with
