@@ -1,9 +1,10 @@
 describe("Calculator view", function() {
-  var view;
+  var calculator, view;
 
   describe("after creation", function() {
     beforeEach(function() {
-      view = new CalculatorView;
+      calculator = new Calculator;
+      view = new CalculatorView({calculator: calculator});
     });
 
     it("should not have entered number", function() {
@@ -17,7 +18,8 @@ describe("Calculator view", function() {
 
   describe("number entering", function() {
     beforeEach(function() {
-      view = new CalculatorView;
+      calculator = new Calculator;
+      view = new CalculatorView({calculator: calculator});
     });
 
     it("should store first entered digit", function() {
@@ -54,7 +56,8 @@ describe("Calculator view", function() {
 
   describe("operations", function() {
     beforeEach(function() {
-      view = new CalculatorView;
+      calculator = new Calculator;
+      view = new CalculatorView({calculator: calculator});
       view.numberEntered("3");
       view.operation("enter");
       view.numberEntered("4");

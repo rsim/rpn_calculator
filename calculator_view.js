@@ -1,6 +1,6 @@
 var CalculatorView = Backbone.View.extend({
-  initialize: function() {
-    this.calculator = new Calculator;
+  initialize: function(options) {
+    this.calculator = options.calculator;
     this.enteredNumber = undefined;
     this.render();
 

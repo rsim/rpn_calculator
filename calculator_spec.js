@@ -289,4 +289,17 @@ describe("Calculator", function() {
     });
   });
 
+  describe("with server memory URL", function() {
+    it("should use default URL when not specified", function() {
+      calculator = new Calculator;
+      expect(calculator.memory.url).toEqual("http://localhost:8080");
+    });
+
+    it("should use specified URL", function() {
+      calculator = new Calculator({memoryUrl: "http://example.com"});
+      expect(calculator.memory.url).toEqual("http://example.com");
+    });
+
+  });
+
 });

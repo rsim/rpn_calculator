@@ -43,7 +43,10 @@
 
   <script type="text/javascript">
     $(function() {
-      var calculatorView = new CalculatorView({el: $("#calculator")});
+      var memoryUrl = window.location.hostname == "rsim.github.com" ?
+            "http://rpncalculator.rayapps.com" : undefined,
+          calculator = new Calculator({memoryUrl: memoryUrl}),
+          calculatorView = new CalculatorView({el: $("#calculator"), calculator: calculator});
     });
   </script>
 

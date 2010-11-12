@@ -93,9 +93,10 @@ ServerMemory.prototype = {
   }
 };
 
-var Calculator = function() {
+var Calculator = function(options) {
+  var memoryUrl = options && options.memoryUrl || "http://localhost:8080";
   this.stack = new Stack;
-  this.memory = new ServerMemory("http://localhost:8080");
+  this.memory = new ServerMemory(memoryUrl);
 };
 
 _.extend(Calculator.prototype, Backbone.Events, {
